@@ -1,21 +1,50 @@
-import { useState } from "react";
-import NewWindow from "./newWindow";
+import {useState} from 'react'
+import NewWindow from './newWindow'
+import Popper from './popper'
+import Tooltip from './tooltip'
+import Menu from './menu'
 
-export default function App() {
-  const [rendered, setRendered] = useState(false);
+function NewWindowParent({children}) {
+  const [rendered, setRendered] = useState(false)
 
   function handleClick() {
-    setRendered(true);
+    setRendered(true)
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <button onClick={handleClick}>show</button>
       {rendered && (
-        <NewWindow>
-          <div style={{ width: 40, height: 40, background: "blue" }} />
+        <NewWindow onUnload={() => setRendered(false)}>
+          🔥 New window content 🔥
+          {children}
         </NewWindow>
       )}
     </div>
-  );
+  )
+}
+
+export default function App() {
+  return (
+    <div>
+      <div>
+        Popper ✅
+        <NewWindowParent>
+          <Popper />
+        </NewWindowParent>
+      </div>
+      <div>
+        Tooltip ✅
+        <NewWindowParent>
+          <Tooltip />
+        </NewWindowParent>
+      </div>
+      <div>
+        Menu ✅
+        <NewWindowParent>
+          <Menu />
+        </NewWindowParent>
+      </div>
+    </div>
+  )
 }
