@@ -80,7 +80,7 @@ export default function App() {
         </NewWindowParent>
       </div>
       <div>
-        TooltipWithAnchorElFixed ❌
+        TooltipWithAnchorElFixed ✅
         <NewWindowParentEdgeCase />
       </div>
     </div>
